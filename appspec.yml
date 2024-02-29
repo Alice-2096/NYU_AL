@@ -1,0 +1,19 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/app
+hooks:
+  BeforeInstall:
+    - location: scripts/install_dependencies.sh # this file runs before the application is installed
+      timeout: 300
+      runas: ec2-user
+  ApplicationStart:
+    - location: scripts/start_server.sh # this file runs after application is installed
+      timeout: 300
+      runas: ec2-user
+  ApplicationStop:
+    - location: scripts/stop_server.sh # this file runs before the application is stopped 
+      timeout: 300
+      runas: ec2-user
+# necessary scripts for aws code deploy

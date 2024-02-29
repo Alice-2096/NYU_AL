@@ -1,0 +1,23 @@
+{
+  "name": "nyu_al",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alice-2096/NYU_AL.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Alice-2096/NYU_AL/issues"
+  },
+  "homepage": "https://github.com/Alice-2096/NYU_AL#readme",
+  "dependencies": {
+    "express": "^4.18.3"
+  },
+  "type": "module"
+}
