@@ -9,7 +9,9 @@ phases:
       - echo Logging in to Amazon ECR....
       - aws --version
       # authentication for ecr to push the image
-      - $PUSH_TO_ECR_COMMAND
+      - echo push command is $PUSH_TO_ECR_COMMAND
+      - echo repo url is $REPO_URL
+      - sh -c $PUSH_TO_ECR_COMMAND
       # build code from this repository
       - REPOSITORY_URI=$REPO_URL
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
