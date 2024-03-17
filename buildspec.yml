@@ -11,7 +11,7 @@ phases:
       # authentication for ecr to push the image
       - echo push command is $PUSH_TO_ECR_COMMAND
       - echo repo url is $REPO_URL
-      - sh -c $PUSH_TO_ECR_COMMAND
+      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 789264351109.dkr.ecr.us-east-1.amazonaws.com
       # build code from this repository
       - REPOSITORY_URI=$REPO_URL
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
