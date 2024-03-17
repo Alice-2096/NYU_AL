@@ -41,6 +41,7 @@ artifacts: # what to upload to S3 after build
     - package.json
     - node_modules/*
     - imagedefinitions.json
+    - appspec.yml
 cache: # cached at S3 for faster build times
   path:
     - node_modules/*
