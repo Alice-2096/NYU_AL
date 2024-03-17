@@ -9,9 +9,9 @@ phases:
       - echo Logging in to Amazon ECR....
       - aws --version
       # authentication for ecr to push the image
-      - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 713215096865.dkr.ecr.us-east-1.amazonaws.com
+      - $PUSH_TO_ECR_COMMAND
       # build code from this repository
-      - REPOSITORY_URI=713215096865.dkr.ecr.us-east-1.amazonaws.com/vip-al-aws-deploy
+      - REPOSITORY_URI=$REPO_URL
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
   build:
     commands:
@@ -27,7 +27,7 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - echo Writing image definitions file...
       # Give your ECS container name specified in the task definition
-      - DOCKER_CONTAINER_NAME=nyu-vip
+      - DOCKER_CONTAINER_NAME=$CONTAINER_NAME
       - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - echo $DOCKER_CONTAINER_NAME
       - echo printing imagedefinitions.json
